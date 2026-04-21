@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Suhani Sahoo — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF8F4;
+    --warm-white: #F5F2EC;
+    --ink: #1A1814;
+    --mid: #6B6560;
+    --light: #B5AFA8;
+    --accent: #C4956A;
+    --accent-light: #E8D5BF;
+    --rule: #E2DDD6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 5vw;
+    background: rgba(250,248,244,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5vw;
+    padding-top: 80px;
+    gap: 4rem;
+    position: relative;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 45vw; height: 100%;
+    background: var(--warm-white);
+    z-index: 0;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px; background: var(--accent);
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1.6rem;
+  }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 0.95rem; color: var(--mid);
+    max-width: 420px; margin-bottom: 2.4rem;
+    line-height: 1.8;
+  }
+  .hero-cta-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: var(--cream);
+    padding: 0.85rem 2rem; font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-ghost {
+    color: var(--ink); font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+    border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 1.2rem;
+    padding: 3rem 2rem;
+  }
+  .hero-stat-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    padding: 1.4rem 1.8rem;
+    display: flex; align-items: center; gap: 1.2rem;
+    opacity: 0; transform: translateX(30px);
+    animation: slideIn 0.6s forwards;
+  }
+  .hero-stat-card:nth-child(1) { animation-delay: 0.3s; }
+  .hero-stat-card:nth-child(2) { animation-delay: 0.5s; }
+  .hero-stat-card:nth-child(3) { animation-delay: 0.7s; }
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .stat-icon {
+    width: 40px; height: 40px; background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--light); }
+  .stat-value { font-size: 0.92rem; font-weight: 500; color: var(--ink); margin-top: 0.1rem; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 5vw; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.2rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem; color: var(--accent); font-weight: 400;
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300; letter-spacing: -0.01em;
+  }
+  .section-line {
+    flex: 1; height: 1px; background: var(--rule); margin-left: 0.8rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--warm-white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; align-items: start;
+  }
+  .about-text p {
+    color: var(--mid); font-size: 0.95rem; margin-bottom: 1.2rem; line-height: 1.85;
+  }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+  .about-links { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+  .link-pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.55rem 1.2rem; border: 1px solid var(--rule);
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; background: #fff;
+    transition: all 0.2s;
+  }
+  .link-pill:hover { border-color: var(--accent); color: var(--accent); }
+  .about-aside {}
+  .info-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.9rem 0; border-bottom: 1px solid var(--rule);
+    font-size: 0.85rem;
+  }
+  .info-row:first-child { border-top: 1px solid var(--rule); }
+  .info-label { color: var(--light); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .info-val { color: var(--ink); font-weight: 500; text-align: right; }
+
+  /* ── SKILLS ── */
+  #skills {}
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;
+  }
+  .skill-block {
+    border: 1px solid var(--rule); padding: 1.8rem;
+    background: #fff; transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-block:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .skill-category {
+    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--accent); margin-bottom: 0.9rem; font-weight: 500;
+  }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .skill-tag {
+    font-size: 0.78rem; color: var(--mid);
+    padding: 0.25rem 0.7rem; background: var(--warm-white);
+    border: 1px solid var(--rule);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--warm-white); }
+  .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+  .project-card {
+    background: #fff; border: 1px solid var(--rule);
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 2rem; padding: 2.2rem 2.5rem; align-items: start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .project-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--accent-light);
+    line-height: 1; user-select: none;
+  }
+  .project-body {}
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem;
+  }
+  .project-desc { font-size: 0.88rem; color: var(--mid); line-height: 1.75; margin-bottom: 1rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.65rem; border: 1px solid var(--rule); color: var(--mid);
+  }
+  .project-arrow {
+    font-size: 1.3rem; color: var(--light); align-self: center;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .project-card:hover .project-arrow { color: var(--accent); transform: translateX(4px); }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications {}
+  .cert-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem;
+  }
+  .cert-item {
+    padding: 1.6rem; border: 1px solid var(--rule); background: #fff;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    transition: border-color 0.2s;
+  }
+  .cert-item:hover { border-color: var(--accent); }
+  .cert-issuer {
+    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent);
+  }
+  .cert-name { font-size: 0.92rem; font-weight: 500; color: var(--ink); line-height: 1.4; }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--warm-white); }
+  .edu-list { display: flex; flex-direction: column; gap: 0; }
+  .edu-item {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 3rem; padding: 2rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .edu-item:first-child { border-top: 1px solid var(--rule); }
+  .edu-year { font-size: 0.8rem; color: var(--light); padding-top: 0.2rem; }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 400; margin-bottom: 0.3rem;
+  }
+  .edu-inst { font-size: 0.85rem; color: var(--mid); }
+
+  /* ── CONTACT ── */
+  #contact {
+    text-align: center;
+    background: var(--ink); color: var(--cream);
+    padding: 7rem 5vw;
+  }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-num { color: var(--accent); }
+  .contact-sub {
+    color: var(--light); font-size: 0.95rem; margin: 1.5rem auto 3rem;
+    max-width: 420px; line-height: 1.8;
+  }
+  .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.85rem 1.8rem; border: 1px solid rgba(255,255,255,0.2);
+    color: var(--cream); text-decoration: none; font-size: 0.8rem;
+    font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 5vw; display: flex; justify-content: space-between;
+    align-items: center; font-size: 0.75rem; color: var(--mid);
+  }
+  footer a { color: var(--light); text-decoration: none; }
+
+  /* ── ENTRY ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding-top: 100px; }
+    #hero::before { display: none; }
+    .hero-right { padding: 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .project-card { grid-template-columns: 1fr; gap: 1rem; }
+    .project-num { font-size: 2rem; }
+    .edu-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    nav { padding: 1rem 5vw; }
+    .nav-links { gap: 1.4rem; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    section { padding: 5rem 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Suhani Sahoo</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">CS Student &amp; Data Enthusiast</div>
+    <h1 class="hero-name">
+      Suhani<br/><em>Sahoo</em>
+    </h1>
+    <p class="hero-desc">
+      Computer Science student at KIIT University with a passion for data analysis, machine learning, and turning complex datasets into actionable insights.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get in Touch →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-card">
+      <div class="stat-icon">🎓</div>
+      <div>
+        <div class="stat-label">Institution</div>
+        <div class="stat-value">KIIT University, Bhubaneswar</div>
+      </div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-icon">💡</div>
+      <div>
+        <div class="stat-label">Focus Areas</div>
+        <div class="stat-value">Data Analytics · ML · Product Strategy</div>
+      </div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-icon">📅</div>
+      <div>
+        <div class="stat-label">Graduating</div>
+        <div class="stat-value">B.Tech CSE — Class of 2027</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>
+        I'm a third-year Computer Science student at <strong>KIIT University</strong>, driven by curiosity about how data shapes decisions. I work at the intersection of <strong>data analysis, machine learning, and business strategy</strong> — building solutions that are both technically rigorous and practically meaningful.
+      </p>
+      <p>
+        My projects span from healthcare ML systems to customer analytics dashboards, and I bring the same care for detail to every dataset I touch. I'm particularly excited about roles where analytical thinking meets real-world impact — consulting, data strategy, and product roles in FinTech.
+      </p>
+      <p>
+        Outside of code, I'm drawn to how technology can be designed to be more human — more intuitive, more accessible, and more empowering.
+      </p>
+      <div class="about-links">
+        <a href="https://github.com/suhaniisahoo23/suhaniisahoo23" target="_blank" class="link-pill">⌥ GitHub</a>
+        <a href="https://www.linkedin.com/in/suhani-sahoo-172953233/" target="_blank" class="link-pill">in LinkedIn</a>
+        <a href="mailto:suhanisahoo05@gmail.com" class="link-pill">✉ Email</a>
+      </div>
+    </div>
+    <div class="about-aside fade-up">
+      <div class="info-row">
+        <span class="info-label">Degree</span>
+        <span class="info-val">B.Tech — CSE</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">University</span>
+        <span class="info-val">KIIT, Bhubaneswar</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Graduation</span>
+        <span class="info-val">2027</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Phone</span>
+        <span class="info-val">+91-8455049577</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Location</span>
+        <span class="info-val">Bhubaneswar, India</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Open To</span>
+        <span class="info-val">Internships · Placements</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block fade-up">
+      <div class="skill-category">Languages</div>
+      <div class="skill-list">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C/C++</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Java</span>
+      </div>
+    </div>
+    <div class="skill-block fade-up">
+      <div class="skill-category">Data & Analytics</div>
+      <div class="skill-list">
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">EDA</span>
+        <span class="skill-tag">Data Cleaning</span>
+      </div>
+    </div>
+    <div class="skill-block fade-up">
+      <div class="skill-category">Machine Learning</div>
+      <div class="skill-list">
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">NLP</span>
+        <span class="skill-tag">Neural Networks</span>
+        <span class="skill-tag">Data Analysis</span>
+      </div>
+    </div>
+    <div class="skill-block fade-up">
+      <div class="skill-category">Web Technologies</div>
+      <div class="skill-list">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">FastAPI</span>
+      </div>
+    </div>
+    <div class="skill-block fade-up">
+      <div class="skill-category">Tools</div>
+      <div class="skill-list">
+        <span class="skill-tag">Git & GitHub</span>
+        <span class="skill-tag">Jupyter</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">Google Colab</span>
+      </div>
+    </div>
+    <div class="skill-block fade-up">
+      <div class="skill-category">Concepts</div>
+      <div class="skill-list">
+        <span class="skill-tag">Data Visualization</span>
+        <span class="skill-tag">Statistical Analysis</span>
+        <span class="skill-tag">ML Pipelines</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-up">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-list">
+
+    <!-- Bloom -->
+    <div class="project-card fade-up">
+      <div class="project-num">01</div>
+      <div class="project-body">
+        <div class="project-name">Bloom — PCOS Tracker</div>
+        <p class="project-desc">
+          A single-page web app for cycle tracking, symptom logging, and hormone analytics. Features BBT charting, fertility prediction, and personalized health insights — built to make complex health data accessible and actionable for women.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">HTML/CSS/JS</span>
+          <span class="project-tag">Data Visualization</span>
+          <span class="project-tag">Health Analytics</span>
+          <span class="project-tag">UI/UX</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <!-- MedCAFAS -->
+    <div class="project-card fade-up">
+      <div class="project-num">02</div>
+      <div class="project-body">
+        <div class="project-name">MedCAFAS — Medical Factuality Assessment</div>
+        <p class="project-desc">
+          A confidence-aware system to verify medical claims using NLP and machine learning. Explored data preprocessing pipelines, factuality scoring approaches, and claim verification models that evaluate medical text for accuracy.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">FastAPI</span>
+          <span class="project-tag">NLP</span>
+          <span class="project-tag">Machine Learning</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+
+    <!-- Customer Behavior -->
+    <div class="project-card fade-up">
+      <div class="project-num">03</div>
+      <div class="project-body">
+        <div class="project-name">Customer Behavior Analysis</div>
+        <p class="project-desc">
+          End-to-end data analysis pipeline using Python, SQL, and Power BI to uncover purchasing patterns and behavioral trends. Created interactive dashboards highlighting sales trends, customer segments, and actionable business recommendations.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">SQL</span>
+          <span class="project-tag">Excel</span>
+          <span class="project-tag">Power BI</span>
+          <span class="project-tag">EDA</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header fade-up">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-item fade-up">
+      <div class="cert-issuer">DeepLearning.AI</div>
+      <div class="cert-name">Neural Networks and Deep Learning</div>
+    </div>
+    <div class="cert-item fade-up">
+      <div class="cert-issuer">Google</div>
+      <div class="cert-name">Ask Questions to Make Data-Driven Decisions</div>
+    </div>
+    <div class="cert-item fade-up">
+      <div class="cert-issuer">Google</div>
+      <div class="cert-name">Foundations: Data, Data, Everywhere</div>
+    </div>
+    <div class="cert-item fade-up">
+      <div class="cert-issuer">Forage</div>
+      <div class="cert-name">Tata Data Visualization: Empowering Business with Effective Insights</div>
+    </div>
+    <div class="cert-item fade-up">
+      <div class="cert-issuer">McKinsey &amp; Company</div>
+      <div class="cert-name">McKinsey Forward Program</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header fade-up">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-list">
+    <div class="edu-item fade-up">
+      <div class="edu-year">2023 — 2027</div>
+      <div>
+        <div class="edu-degree">B.Tech in Computer Science &amp; Engineering</div>
+        <div class="edu-inst">Kalinga Institute of Industrial Technology (KIIT), Bhubaneswar</div>
+      </div>
+    </div>
+    <div class="edu-item fade-up">
+      <div class="edu-year">2021 — 2023</div>
+      <div>
+        <div class="edu-degree">Class XII — Science</div>
+        <div class="edu-inst">ODM Public School, Bhubaneswar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up" style="justify-content:center; border:none;">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Let's Connect</h2>
+  </div>
+  <p class="contact-sub fade-up">
+    Open to placement opportunities, internships, and meaningful collaborations. Feel free to reach out.
+  </p>
+  <div class="contact-links fade-up">
+    <a href="mailto:suhanisahoo05@gmail.com" class="contact-link">✉ Email Me</a>
+    <a href="https://www.linkedin.com/in/suhani-sahoo-172953233/" target="_blank" class="contact-link">in LinkedIn</a>
+    <a href="https://github.com/suhaniisahoo23/suhaniisahoo23" target="_blank" class="contact-link">⌥ GitHub</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Suhani Sahoo</span>
+  <span>Built with care · KIIT University</span>
+</footer>
+
+<script>
+  // Intersection observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
